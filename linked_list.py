@@ -3,6 +3,15 @@ class Node:
         self.value = value
         self.next = None
 
+class LinkedListEmptyError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
+class WrongIndexError(Exception):
+    def __init__(self, message):
+        self.message.message
+        super().__init__(self.message)
 
 class LinkedListIterator:
     def __init__(self, linked_list):
@@ -57,24 +66,26 @@ class LinkedList:
             iterate.next = iterate.next.next
             self.size -= 1
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.size == 0
+
+    def has_cycle(self):
+        pass
+
+    def detect_cycle(self):
+        pass
+
+    def merge_sorted_list(self, sort_list):
+        pass
+
+    def reverse(self):
+        pass
+
+    def reverse_between(self, start, end):
+        pass
 
     def __iter__(self):
         return LinkedListIterator(self)
-
-    class LinkedListEmptyError(Exception):
-        def __init__(self, message):
-            self.message = message
-            super().__init__(self.message)
-
-    class WrongIndexError(Exception):
-        def __init__(self, message):
-            self.message.message
-            super().__init__(self.message)
-
-
-
 
 if __name__ == "__main__":
 

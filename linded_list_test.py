@@ -46,7 +46,7 @@ class LinkedListTestCase(unittest.TestCase):
 
     def test_isEmpty(self):
         link = LinkedList()
-        self.assertTrue(link.isEmpty())
+        self.assertTrue(link.is_empty())
 
 
 if __name__ == '__main__':
