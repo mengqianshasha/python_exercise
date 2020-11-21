@@ -58,10 +58,7 @@ class LinkedList:
             self.size -= 1
 
     def isEmpty(self):
-        if self.head.next is None:
-            return True
-        else:
-            return False
+        return self.size == 0
 
     def __iter__(self):
         return LinkedListIterator(self)
