@@ -123,7 +123,7 @@ class CalculatorApp(tk.Frame):
         self.zero = tk.Button(self.number_frame, fg="white", bg="grey")
         self.zero["text"] = "0"
         self.zero["command"] = self.click_zero
-        self.zero.grid(row=5, column=0, columnspan=2, sticky="EW", padx=(5, 0), pady=(5, 10))
+        self.zero.grid(row=5, column=0, columnspan=2, sticky="EW", padx=(10, 0), pady=(5, 10))
 
         self.dot = tk.Button(self.number_frame, fg="white", bg="grey")
         self.dot["text"] = "."
