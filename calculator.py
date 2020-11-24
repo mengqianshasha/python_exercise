@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import tkmacosx as tkmac
 
 class Calculator:
     @staticmethod
@@ -36,96 +36,96 @@ class CalculatorApp(tk.Frame):
         self.number_frame = tk.Frame(self, background="light grey");
         self.number_frame.pack(side="bottom", fill="both", expand=1)
 
-        self.input_area = tk.Text(self.input_frame, height=1, width=24, bg="light yellow")
+        self.input_area = tk.Text(self.input_frame, height=1, width=51, bg="light yellow")
         self.input_area.grid(row=0, columnspan=4, padx=10, pady=10, sticky="EW")
         self.input_area.configure(state='disabled')
 
-        self.left_bracket = tk.Button(self.number_frame, fg="white", bg="grey", width=5)
+        self.left_bracket = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.left_bracket["text"] = "("
         self.left_bracket["command"] = self.click_left
         self.left_bracket.grid(row=1, column=0, sticky="EW", padx=(10, 0), pady=(10, 0))
 
-        self.right_bracket = tk.Button(self.number_frame, fg="white", bg="grey", width=5)
+        self.right_bracket = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.right_bracket["text"] = ")"
         self.right_bracket["command"] = self.click_right
         self.right_bracket.grid(row=1, column=1, sticky="EW", padx=(5, 0),  pady=(10, 0))
 
-        self.multiply = tk.Button(self.number_frame, fg="white", bg="grey", width=5)
+        self.multiply = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.multiply["text"] = "*"
         self.multiply["command"] = self.click_multiply
         self.multiply.grid(row=1, column=2,  sticky="EW", padx=(5, 0),  pady=(10, 0))
 
-        self.divide = tk.Button(self.number_frame, fg="white", bg="grey", width=5)
+        self.divide = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.divide["text"] = "/"
         self.divide["command"] = self.click_divide
         self.divide.grid(row=1, column=3,  sticky="EW", padx=(5, 10), pady=(10, 0))
 
-        self.one = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.one = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.one["text"] = "1"
         self.one["command"] = self.click_one
         self.one.grid(row=2, column=0, sticky="EW", padx=(10, 0), pady=(5, 0))
 
-        self.two = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.two = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.two["text"] = "2"
         self.two["command"] = self.click_two
         self.two.grid(row=2, column=1, sticky="EW", padx=(5, 0), pady=(5, 0))
 
-        self.three = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.three = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.three["text"] = "3"
         self.three["command"] = self.click_three
         self.three.grid(row=2, column=2, sticky="EW", padx=(5, 0), pady=(5, 0))
 
-        self.plus = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.plus = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.plus["text"] = "+"
         self.plus["command"] = self.click_plus
         self.plus.grid(row=2, column=3, sticky="EW", padx=(5, 10), pady=(5, 0))
 
-        self.four = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.four = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.four["text"] = "4"
         self.four["command"] = self.click_four
         self.four.grid(row=3, column=0, sticky="EW", padx=(10, 0), pady=(5, 0))
 
-        self.five = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.five = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.five["text"] = "5"
         self.five["command"] = self.click_five
         self.five.grid(row=3, column=1, sticky="EW", padx=(5, 0), pady=(5, 0))
 
-        self.six = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.six = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.six["text"] = "6"
         self.six["command"] = self.click_six
         self.six.grid(row=3, column=2, sticky="EW", padx=(5, 0), pady=(5, 0))
 
-        self.minus = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.minus = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.minus["text"] = "-"
         self.minus["command"] = self.click_minus
         self.minus.grid(row=3, column=3, sticky="EW", padx=(5, 10), pady=(5, 0))
 
-        self.seven = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.seven = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.seven["text"] = "7"
         self.seven["command"] = self.click_seven
         self.seven.grid(row=4, column=0, sticky="EW", padx=(10, 0), pady=(5, 0))
 
-        self.eight = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.eight = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.eight["text"] = "8"
         self.eight["command"] = self.click_eight
         self.eight.grid(row=4, column=1, sticky="EW", padx=(5, 0), pady=(5, 0))
 
-        self.nine = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.nine = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.nine["text"] = "9"
         self.nine["command"] = self.click_nine
         self.nine.grid(row=4, column=2, sticky="EW", padx=(5, 0), pady=(5, 0))
 
-        self.equalsButton = tk.Button(self.number_frame, fg="white", bg="orange")
+        self.equalsButton = tkmac.Button(self.number_frame, fg="white", bg="orange", borderless=True)
         self.equalsButton["text"] = "="
         self.equalsButton["command"] = self.click_calculate
         self.equalsButton.grid(row=4, column=3, rowspan=2, sticky="EWNS", padx=(5, 10), pady=(5, 10))
 
-        self.zero = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.zero = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.zero["text"] = "0"
         self.zero["command"] = self.click_zero
-        self.zero.grid(row=5, column=0, columnspan=2, sticky="EW", padx=(5, 0), pady=(5, 10))
+        self.zero.grid(row=5, column=0, columnspan=2, sticky="EW", padx=(10, 0), pady=(5, 10))
 
-        self.dot = tk.Button(self.number_frame, fg="white", bg="grey")
+        self.dot = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
         self.dot["text"] = "."
         self.dot["command"] = self.click_dot
         self.dot.grid(row=5, column=2, sticky="EW", padx=(5, 0), pady=(5, 10))
@@ -265,7 +265,7 @@ if __name__ == "__main__":
     positionDown = int(root.winfo_screenheight() / 2 - windowHeight / 2)
 
     # Positions the window in the center of the page.
-    root.geometry("300x250+{}+{}".format(positionRight, positionDown))
+    root.geometry("400x250+{}+{}".format(positionRight, positionDown))
     root.title("Calculator")
     app = CalculatorApp(parent=root)
     app.mainloop()

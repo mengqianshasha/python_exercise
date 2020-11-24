@@ -26,6 +26,7 @@ class LinkedListIterator:
         else:
             raise StopIteration()
 
+
 class LinkedList:
     def __init__(self):
         self.head = Node()
@@ -33,56 +34,105 @@ class LinkedList:
 
     def append(self, new_value):
         new_node = Node(new_value)
-        iterate = self.head
-        while iterate.next:
-            iterate = iterate.next
-        iterate.next = new_node
-        self.size += 1
+        last_node = self.__find_node__(self.size - 1)
+        self.__insert__after__(last_node, new_node)
 
     def pop(self):
         if self.head.next is None:
             raise LinkedListEmptyError("Pop from empty linked list")
         else:
-            iterate = self.head
-            while iterate.next.next:
-                iterate = iterate.next
-            value = iterate.next.value
-            iterate.next = None
-            self.size -= 1
+            node_prev = self.__find_node__(self.size - 2)
+            value = node_prev.next.value
+            self.__delete_node__(node_prev)
             return value
 
-    def get_index(self, index):
-        if self.head.next:
-            iterate = self.head.next
-            for i in range(index):
-                iterate = iterate.next
-            return iterate.value
+    def get_value(self, index):
+        return self.__find_node__(index).value
 
     def delete(self, index):
-        if self.head.next:
+        prev_node = self.__find_node__(index - 1)
+        self.__delete_node__(prev_node)
+
+    def insert(self, index, value):
+        node = self.__find_node__(index)
+        new_node = Node(value)
+        self.__insert__after__(node, new_node)
+
+    def __find_node__(self, index):
+        if index == -1:
+            return self.head
+        else:
             iterate = self.head
-            for i in range(index):
+            for _ in range(index + 1):
                 iterate = iterate.next
-            iterate.next = iterate.next.next
-            self.size -= 1
+            return iterate
+
+    def __delete_node__(self, node_prev):
+        node = node_prev.next
+        node_prev.next = node.next
+        node.next = None
+        self.size -= 1
+
+    def __insert__after__(self, node, new_node):
+        new_node.next = node.next
+        node.next = new_node
+        self.size += 1
 
     def is_empty(self):
         return self.size == 0
 
     def has_cycle(self):
-        pass
+        iterate1 = self.head
+        iterate2 = self.head
+        while iterate1.next and iterate2.next.next:
+            iterate1 = iterate1.next
+            iterate2 = iterate2.next.next
+            if iterate1 == iterate2:
+                return True
+        return False
 
     def detect_cycle(self):
         pass
 
     def merge_sorted_list(self, sort_list):
-        pass
+        iterate = self.head
+        iterate1 = iterate.next
+        iterate2 = sort_list.head.next
+
+
+
+
 
     def reverse(self):
-        pass
+        iterate1 = None
+        iterate2 = self.head.next
+        while iterate2:
+            node = iterate2.next
+            iterate2.next = iterate1
+            iterate1 = iterate2
+            iterate2 = node
+        self.head.next = iterate1
 
     def reverse_between(self, start, end):
-        pass
+        if self.size - 1 >= end >= start >= 0:
+            node_prev = self.__find_node__(start - 1)
+            node_end = self.__find_node__(end)
+            node_after = node_end.next
+
+            iterate1 = node_prev.next
+            iterate2 = iterate1.next
+
+            node_prev.next = node_end
+            iterate1.next = node_after
+
+            while iterate2 != node_after:
+                node_temp = iterate2.next
+                iterate2.next = iterate1
+                iterate1 = iterate2
+                iterate2 = node_temp
+
+        else:
+            raise LinkedListEmptyError("reverse empty linked list")
 
     def __iter__(self):
         return LinkedListIterator(self)
