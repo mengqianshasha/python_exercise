@@ -36,6 +36,8 @@ class LinkedListTestCase(unittest.TestCase):
     def test_isEmpty(self):
         link = LinkedList()
         self.assertTrue(link.is_empty())
+<<<<<<< HEAD
+=======
 
     def test_has_cycle(self):
         link = LinkedList()
@@ -74,6 +76,7 @@ class LinkedListTestCase(unittest.TestCase):
         link.reverse_between(1, 2)
         self.assertEqual(3, link[1])
         self.assertEqual(2, link[2])
+>>>>>>> 773362e37d57819c55d912ba0f34c5b750caabe4
 
     def test_merge_sorted_list(self):
         link1 = LinkedList()

@@ -67,6 +67,25 @@ class LinkedList:
                 iterate = iterate.next
             return iterate
 
+<<<<<<< HEAD
+    def is_empty(self):
+        return self.size == 0
+
+    def has_cycle(self):
+        pass
+
+    def detect_cycle(self):
+        pass
+
+    def merge_sorted_list(self, sort_list):
+        pass
+
+    def reverse(self):
+        pass
+
+    def reverse_between(self, start, end):
+        pass
+=======
     def __delete_node__(self, node_prev):
         node = node_prev.next
         node_prev.next = node.next
@@ -166,6 +185,7 @@ class LinkedList:
 
     def __getitem__(self, key):
         return self.get_value(key)
+>>>>>>> 773362e37d57819c55d912ba0f34c5b750caabe4
 
     def __iter__(self):
         return LinkedListIterator(self)
