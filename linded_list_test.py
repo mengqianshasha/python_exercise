@@ -91,6 +91,13 @@ class LinkedListTestCase(unittest.TestCase):
         self.assertEqual(4, link3.size)
         self.assertEqual(4, link3[2])
 
+    def test_detect_cycle(self):
+        link = LinkedList()
+        self.assertFalse(link.detect_cycle())
+        for i in range(10):
+            link.append(i)
+        link.__find_node__(9).next = link.__find_node__(4)
+        self.assertEqual(4, link.detect_cycle().value)
 
 if __name__ == '__main__':
     unittest.main()

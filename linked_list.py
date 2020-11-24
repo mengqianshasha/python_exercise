@@ -92,7 +92,23 @@ class LinkedList:
         return False
 
     def detect_cycle(self):
-        pass
+        iterate1 = self.head
+        iterate2 = iterate1
+
+        while iterate1.next:
+            iterate1 = iterate1.next
+            iterate2 = iterate2.next.next
+            if iterate1 == iterate2:
+                iterate3 = self.head
+                break
+        else:
+            return None
+
+        while iterate1 != iterate3:
+            iterate1 = iterate1.next
+            iterate3 = iterate3.next
+        else:
+            return iterate1
 
     def merge_sorted_list(self, sort_list):
         iterate = self.head
