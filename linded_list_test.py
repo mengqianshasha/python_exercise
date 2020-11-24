@@ -22,7 +22,7 @@ class LinkedListTestCase(unittest.TestCase):
         link.append(1)
         link.append(2)
         link.append(3)
-        self.assertEqual(2, link.get_value(1))
+        self.assertEqual(2, link[1])
 
     def test_delete(self):
         link = LinkedList()
@@ -56,9 +56,9 @@ class LinkedListTestCase(unittest.TestCase):
         link.append(2)
         link.append(3)
         link.reverse()
-        self.assertEqual(3, link.get_value(0))
-        self.assertEqual(2, link.get_value(1))
-        self.assertEqual(1, link.get_value(2))
+        self.assertEqual(3, link[0])
+        self.assertEqual(2, link[1])
+        self.assertEqual(1, link[2])
 
     def test_reverse_between(self):
         link = LinkedList()
@@ -67,14 +67,29 @@ class LinkedListTestCase(unittest.TestCase):
 
         link.append(1)
         link.reverse_between(0, 0)
-        self.assertEqual(1,link.get_value(0))
+        self.assertEqual(1, link[0])
 
         link.append(2)
         link.append(3)
         link.reverse_between(1, 2)
-        self.assertEqual(3, link.get_value(1))
-        self.assertEqual(2, link.get_value(2))
+        self.assertEqual(3, link[1])
+        self.assertEqual(2, link[2])
 
+    def test_merge_sorted_list(self):
+        link1 = LinkedList()
+        link2 = LinkedList()
+        link2.append(1)
+        link2.append(2)
+        link1.merge_sorted_list(link2)
+        self.assertEqual(2, link1.size)
+        self.assertEqual(2, link1[1])
+
+        link1.append(6)
+        link3 = LinkedList()
+        link3.append(4)
+        link3.merge_sorted_list(link1)
+        self.assertEqual(4, link3.size)
+        self.assertEqual(4, link3[2])
 
 
 if __name__ == '__main__':

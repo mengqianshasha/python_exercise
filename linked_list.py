@@ -99,9 +99,20 @@ class LinkedList:
         iterate1 = iterate.next
         iterate2 = sort_list.head.next
 
-
-
-
+        while iterate1 and iterate2:
+            if iterate2.value <= iterate1.value:
+                iterate_temp = iterate2.next
+                iterate.next = iterate2
+                iterate2.next = iterate1
+                iterate = iterate2
+                iterate2 = iterate_temp
+            else:
+                iterate = iterate1
+                iterate1 = iterate1.next
+        else:
+            if iterate2:
+                iterate.next = iterate2
+        self.size += sort_list.size
 
     def reverse(self):
         iterate1 = None
@@ -136,6 +147,10 @@ class LinkedList:
 
     def __iter__(self):
         return LinkedListIterator(self)
+
+    def __getitem__(self, key):
+        return self.get_value(key)
+
 
 if __name__ == "__main__":
 
