@@ -256,7 +256,7 @@ class CalculatorApp(tk.Frame):
 
 if __name__ == "__main__":
     root = tk.Tk()
-    # Gets the requested values of the height and widht.
+    # Gets the requested values of the height and width.
     windowWidth = root.winfo_reqwidth()
     windowHeight = root.winfo_reqheight()
 
