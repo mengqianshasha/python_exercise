@@ -167,8 +167,6 @@ class LinkedList:
     def __getitem__(self, key):
         return self.get_value(key)
 
-    def __iter__(self):
-        return LinkedListIterator(self)
 
 if __name__ == "__main__":
 
