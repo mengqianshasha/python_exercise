@@ -1,7 +1,22 @@
 import tkinter as tk
 import tkmacosx as tkmac
+import operator
+
 
 class Calculator:
+    operator_dic = {
+        '+': operator.add,
+        '-': operator.sub,
+        '*': operator.mul,
+        '/': operator.truediv
+    }
+    operator_precedence = {
+        '+': 1,
+        '-': 1,
+        '*': 2,
+        '/': 2
+    }
+
     @staticmethod
     def calculate(expr):
         tokens = Calculator.__parse_input__(expr)
@@ -10,15 +25,71 @@ class Calculator:
 
     @staticmethod
     def __parse_input__(expr):
-        return []
+        tokens = []
+        signal = 0
+        for char in expr:
+            if char.isnumeric():
+                if signal == 0:
+                    signal = 1
+                    tokens.append(int(char))
+                else:
+                    new_num = tokens.pop() * 10 + int(char)
+                    tokens.append(new_num)
+            else:
+                tokens.append(char)
+                signal = 0
+        return tokens
+
+    @staticmethod
+    def __operator_precedence__(opt):
+        high_precedence = ["*", "/"]
+        low_precedence = ["+", "-"]
+        if opt in high_precedence:
+            return 2
+        elif opt in low_precedence:
+            return 1
 
     @staticmethod
     def __infix_to_rpn__(input_tokens):
-        return []
+        output = []
+        operators = []
+        for token in input_tokens:
+            if token in ["+", "-", "*", "/"]:
+                if len(operators) == 0:
+                    operators.append(token)
+                elif operators[-1] == '(':
+                    operators.append(token)
+                else:
+                    curr_precedence = Calculator.operator_precedence[token]
+                    prev_precedence = Calculator.operator_precedence[operators[-1]]
+                    if curr_precedence <= prev_precedence:
+                        output.append(operators.pop())
+                    operators.append(token)
+            elif token == "(":
+                operators.append(token)
+            elif token == ")":
+                while operators[-1] != "(":
+                    output.append(operators.pop())
+                else:
+                    operators.pop()
+            else:
+                output.append(token)
+
+        while len(operators):
+            output.append(operators.pop())
+        return output
 
     @staticmethod
     def __eval_rpn__(rpn_tokens):
-        return 0
+        final_stack = []
+        for token in rpn_tokens:
+            if type(token) != int:
+                num2 = final_stack.pop()
+                num1 = final_stack.pop()
+                final_stack.append(Calculator.operator_dic[token](num1, num2))
+            else:
+                final_stack.append(token)
+        return final_stack[-1]
 
 
 class CalculatorApp(tk.Frame):
@@ -36,8 +107,8 @@ class CalculatorApp(tk.Frame):
         self.number_frame = tk.Frame(self, background="light grey");
         self.number_frame.pack(side="bottom", fill="both", expand=1)
 
-        self.input_area = tk.Text(self.input_frame, height=1, width=51, bg="light yellow")
-        self.input_area.grid(row=0, columnspan=4, padx=10, pady=10, sticky="EW")
+        self.input_area = tk.Text(self.input_frame, height=1, width=51, bg="light pink")
+        self.input_area.grid(row=0, column=0, padx=10, pady=10, sticky="EW")
         self.input_area.configure(state='disabled')
 
         self.left_bracket = tkmac.Button(self.number_frame, fg="white", bg="grey", borderless=True)
@@ -239,7 +310,7 @@ class CalculatorApp(tk.Frame):
 
     def click_calculate(self):
         self.input_area.configure(state='normal')
-        input_str = self.input_area.get("1.0", "end")
+        input_str = self.input_area.get("1.0", "end-1c")
         self.input_area.delete('1.0', "end")
         self.input_area.insert('end', Calculator.calculate(input_str))
         self.input_area.configure(state='disabled')
