@@ -1,6 +1,5 @@
 import pygame
 import random
-from enum import Enum
 
 
 class SnakeNode:
@@ -9,7 +8,7 @@ class SnakeNode:
         self.y = y
 
 
-class Direction(Enum):
+class Direction:
     Up = 0
     Down = 1
     Left = 2
