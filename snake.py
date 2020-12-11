@@ -42,25 +42,34 @@ class Snake:
             self.move_right(block_size)
 
     def move_up(self, block_size):
-        pass
+        self.currentY -= block_size
+        self.__move_body__()
 
     def move_down(self, block_size):
-        pass
+        self.currentY += block_size
+        self.__move_body__()
 
     def move_left(self, block_size):
-        pass
+        self.currentX -= block_size
+        self.__move_body__()
 
     def move_right(self, block_size):
-        pass
+        self.currentX += block_size
+        self.__move_body__()
 
     def change_direction(self, direction):
         self.direction = direction
 
     def hit_himself(self):
-        pass
+        for body_part in self.body[:-1]:
+            if self.currentX == body_part.x and self.currentY == body_part.y:
+                return True
+        return False
 
     def __move_body__(self):
-        pass
+        self.body.append(SnakeNode(self.currentX, self.currentY))
+        if len(self.body) > self.length:
+            self.body.pop(0)
 
 
 class Food:
@@ -168,10 +177,16 @@ class Game:
             self.move_speed -= 1
 
     def eat_food(self):
-        pass
+        if self.snake.currentX == self.food.x and self.snake.currentY == self.food.y:
+            self.snake.length += 1
+            self.food = Food(round(random.randrange(0, self.dis_width - self.block_size) / 10.0) * 10.0,
+                             round(random.randrange(0, self.dis_height - self.block_size) / 10.0) * 10.0)
+
 
     def snake_hit_wall(self):
-        pass
+        if self.snake.currentX == self.dis_width or self.snake.currentX < 0 or self.snake.currentY == self.dis_height or self.snake.currentY < 0:
+            return True
+        return False
 
     def snake_hit_himself(self):
         return self.snake.hit_himself()
